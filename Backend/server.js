@@ -8,10 +8,10 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+dbConnect();
 app.use(cors());
 app.use(express.json());
 
-dbConnect();
 
 app.use("/api/tasks", taskRoutes);
 
