@@ -10,14 +10,14 @@ const Home = () => {
         date: ""
     });
 
-    useEffect(() => {
-        fetchTasks();
-    }, []);
-
     const fetchTasks = async () => {
         const data = await getTasks();
         setTasks(data);
     };
+
+    useEffect(() => {
+        fetchTasks(); // eslint-disable-line react-hooks/set-state-in-effect
+    }, []);
 
     const addTask = async (task) => {
         const newTask = await createTask(task);

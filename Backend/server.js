@@ -8,13 +8,14 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-dbConnect();
-app.use(cors());
-app.use(express.json());
+(async () => {
+    await dbConnect();
+    app.use(cors());
+    app.use(express.json());
 
+    app.use("/api/tasks", taskRoutes);
 
-app.use("/api/tasks", taskRoutes);
-
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+    app.listen(PORT, () => {
+        console.log(`Server running on port ${PORT}`);
+    });
+})();
